@@ -1,2 +1,18 @@
-# Notes-Project
-Full-stack Note-taking app built with Node.js, Express, and React. Implements JWT-based authentication with a refresh token mechanism. Users can create, edit, update, and delete notes after logging in. Supabase with PostgreSQL is used as the database.
+# Note Taking App
+
+A full-stack note taking application built with Node.js, Express, React, and Tailwind CSS. This project features secure JWT-based authentication with a refresh token mechanism and uses Supabase (PostgreSQL) for data management.
+
+## Features
+
+- JWT Authentication  
+- React States (useState, useEffect)  
+- Global State Management (Context API, Custom Context)  
+- Props for Component Communication  
+- Tailwind CSS for Styling  
+- CORS  
+- Rate Limiting  
+- Cookie Parsing  
+- JSON Data Handling
+
+## Website URL
+- https://notes-prjct.vercel.app
