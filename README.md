@@ -1,6 +1,7 @@
 # Note Taking App
 
 A full-stack note taking application built with Node.js, Express, React, and Tailwind CSS. This project features secure JWT-based authentication with a refresh token mechanism and uses Supabase (PostgreSQL) for data management.
+This project helped me to understand basics of React
 
 ## Features
 
