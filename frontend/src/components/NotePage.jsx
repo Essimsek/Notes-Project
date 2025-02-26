@@ -1,7 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useContext, useCallback } from "react";
 import Note, { EditNote } from "./Note.jsx";
-import { useContext } from "react";
-
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 
@@ -28,7 +26,7 @@ const NotePage = (props) => {
     else setNotes([]);
   }, [isLoggedIn]);
   
-  const handleDeleteNote = async (id) => {
+  const handleDeleteNote = useCallback(async (id) => {
     try {
       await axios.delete(`${backendUrl}/api/delete-note/${id}`, {
         withCredentials: true
@@ -39,9 +37,9 @@ const NotePage = (props) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [setNotes]);
 
-  const handleEditNote = (id) => {
+  const handleEditNote = useCallback((id) => {
     setNotes((prevNotes) =>
       prevNotes.map((note) => {
         if (note.id === id) {
@@ -49,22 +47,23 @@ const NotePage = (props) => {
         }
         return note;
     }));
-  };
+  }, [setNotes]);
 
-  const handleSaveNote = async (id, title, content)  => {
+  const handleSaveNote = useCallback(async (id, title, content)  => {
     try {
       const response = await axios.patch(`${backendUrl}/api/update-note/${id}`, { title, content }, { withCredentials: true });
       const date = response.data.date;
-      setNotes(notes.map((note) => {
+      setNotes((prevNotes) => 
+        prevNotes.map((note) => {
         if (id === note.id) {
           return {...note, title, content, date, editing: false};
         }
         return note
-      }))
+      }));
     } catch {
       console.log("Error saving note");
     }
-  };
+  }, [setNotes]);
 
   return (
       <div className="flex flex-wrap w-11/12 ml-12 my-auto p-8 min-h-screen justify-center content-start gap-4 notebook-bg shadow-lg rounded">
@@ -94,3 +93,4 @@ const NotePage = (props) => {
 }
 
 export default NotePage;
+
